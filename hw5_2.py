@@ -1,7 +1,7 @@
 import re
 
 def generator_numbers(text: str):
-    pattern = r"\s\d+\.*\d*\s"# патерн відкликається на цілі і дійсні числа написані через "."
+    pattern = r"\s\d+\.{0,1}\d*\s"# патерн відкликається на цілі і дійсні числа написані через "."
     numbers = map(float, re.findall(pattern, text)) # створює список з усіх найдених /
     for number in numbers:                          # чисел перетворюючи його на float
         yield number
