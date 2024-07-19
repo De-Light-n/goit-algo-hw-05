@@ -4,14 +4,13 @@ def input_error(func):
         try:
             return func(*args, **kwargs)
         except ValueError:
-            print("Not enough arguments was gained.", end=" ")
+            return "Not enough arguments was gained."
         except KeyError:
-            print("Contact was not founded.", end=" ")
+            return "Contact was not founded."
         except IndexError:
-            print("Not enough arguments was gained.", end=" ")
+            return "Not enough arguments was gained."
         except Exception as e:
-            print(e, end=" ")
-        return " "
+            return  f"{e}"
     return inner
 
 # Функції 
