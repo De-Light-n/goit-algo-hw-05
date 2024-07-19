@@ -26,7 +26,7 @@ def load_logs(file_path: str) -> list:
 
 def filter_logs_by_level(logs: list, level: str) -> list:
     log_level = level.upper()
-    filtred_logs = filter(lambda x: x["level"] == log_level, logs)# фільтрація через порівняння з значенням з словника
+    filtred_logs = list(filter(lambda x: x["level"] == log_level, logs))# фільтрація через порівняння з значенням з словника
     return filtred_logs
 
 def count_logs_by_level(logs: list) -> dict:

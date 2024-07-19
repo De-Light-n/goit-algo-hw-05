@@ -1,47 +1,14 @@
 # Декоратор
-def input_error_for_add_contact(func):
+def input_error(func):
     def inner(*args, **kwargs):
         try:
             return func(*args, **kwargs)
         except ValueError:
-            print("Not enough arguments was gained. To add you need 'add name phone'", end=" ")
-        except Exception as e:
-            print(e, end=" ")
-        return " "
-    return inner
-
-def input_error_for_show_phone(func):
-    def inner(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
+            print("Not enough arguments was gained.", end=" ")
         except KeyError:
-            print("Contact was not founded", end=" ")
+            print("Contact was not founded.", end=" ")
         except IndexError:
-            print("Not enough arguments was gained. To phone you need 'phone name'", end=" ")
-        except Exception as e:
-            print(e, end=" ")
-        return " "
-    return inner
-            
-def input_error_for_change_contact(func):
-    def inner(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except KeyError:
-            print("Contact was not founded", end=" ")
-        except IndexError:
-            print("Not enough arguments was gained. To change you need 'change name new-phone'", end=" ")
-        except Exception as e:
-            print(e, end=" ")
-        return " "
-    return inner
-
-def input_error_for_parse_input(func):
-    def inner(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except ValueError:
-            print("Nothing was gained.", end=" ")
+            print("Not enough arguments was gained.", end=" ")
         except Exception as e:
             print(e, end=" ")
         return " "
@@ -57,24 +24,24 @@ def show_all(contacts:dict):
     else:
         return "There is not any contacts\n"
 
-@input_error_for_show_phone       
+@input_error       
 def show_phone(args, contacts:dict):
     output = contacts[args[0]]
     return output
 
-@input_error_for_change_contact     
+@input_error     
 def change_contact(args, contacts:dict):
     old_name = contacts[args[0]]
     contacts[args[0]] = args[1]
     return "Contact changed"
 
-@input_error_for_parse_input
+@input_error
 def parse_input(user_input):
     cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
     return cmd, *args
 
-@input_error_for_add_contact
+@input_error
 def add_contact(args, contacts):
     name, phone = args
     contacts[name] = phone
